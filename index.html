@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Zoom Optique | Votre Vision, Notre Engagement</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & VARIABLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gris-fonce: #1F2937;
+            --orange: #F97316;
+            --blanc: #FFFFFF;
+            --gris-clair: #F3F4F6;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #374151;
+            background: var(--blanc);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-title .subtitle {
+            color: var(--orange);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gris-fonce);
+        }
+
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            background: var(--gris-fonce);
+            color: var(--blanc);
+            padding: 12px 0;
+            font-size: 0.9rem;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .top-bar i {
+            color: var(--orange);
+            margin-right: 6px;
+        }
+
+        .delivery {
+            background: var(--orange);
+            color: var(--gris-fonce);
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-weight: 700;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            background: var(--blanc);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--gris-fonce);
+        }
+
+        .logo span {
+            color: var(--orange);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gris-fonce);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        .nav-btn {
+            background: var(--orange);
+            color: var(--blanc);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: #e85d0e;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            position: relative;
+            height: 80vh;
+            background: linear-gradient(rgba(31, 41, 55, 0.7), rgba(31, 41, 55, 0.7)), url('clario-20.png.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--blanc);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .hero-content h1 span {
+            color: var(--orange);
+            display: block;
+            font-size: 3rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .hero-wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            line-height: 0;
+        }
+
+        .hero-wave svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 36px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--orange);
+            color: var(--blanc);
+            box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #e85d0e;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--blanc);
+            color: var(--blanc);
+        }
+
+        .btn-outline:hover {
+            background: var(--blanc);
+            color: var(--gris-fonce);
+        }
+
+        /* ===== SERVICES ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--blanc);
+            padding: 36px 24px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            border: 1px solid rgba(31, 41, 55, 0.05);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .service-card i {
+            font-size: 2.8rem;
+            color: var(--orange);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--gris-fonce);
+        }
+
+        .service-card p {
+            color: #6B7280;
+            font-size: 0.95rem;
+        }
+
+        /* ===== SLIDER CATALOGUE ===== */
+        .slider-section {
+            background: var(--gris-clair);
+            padding: 60px 0;
+            overflow: hidden;
+        }
+
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .slider-track {
+            display: flex;
+            width: calc(280px * 14);
+            animation: defilement 35s linear infinite;
+        }
+
+        .slider-track:hover {
+            animation-play-state: paused;
+        }
+
+        .slide {
+            width: 280px;
+            flex-shrink: 0;
+            padding: 0 12px;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .slide img:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes defilement {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-280px * 7)); }
+        }
+
+        /* ===== EXPERTISE ===== */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .expertise-image {
+            height: 500px;
+            background: url('clario-19.png.jpeg') center/cover no-repeat;
+            border-radius: 12px;
+            box-shadow: 20px 20px 0 var(--orange);
+        }
+
+        .expertise-content h2 {
+            font-size: 2.3rem;
+            color: var(--gris-fonce);
+            margin-bottom: 16px;
+        }
+
+        .expertise-content .badge {
+            color: var(--orange);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .expertise-flex {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+            justify-content: flex-start;
+        }
+
+        .expertise-item {
+            text-align: center;
+            width: 180px;
+        }
+
+        .expertise-item img {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid var(--orange);
+            margin-bottom: 8px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .expertise-item span {
+            font-weight: 600;
+            color: var(--gris-fonce);
+        }
+
+        /* ===== FORMULAIRE RDV ===== */
+        .rdv-section {
+            background: var(--gris-fonce);
+        }
+
+        .rdv-card {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--blanc);
+            padding: 48px;
+            border-radius: 16px;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.2);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: var(--gris-fonce);
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 14px;
+            border: 1px solid #D1D5DB;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--orange);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+        }
+
+        .btn-submit {
+            background: var(--orange);
+            color: var(--blanc);
+            border: none;
+            padding: 16px;
+            font-weight: 700;
+            border-radius: 8px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: #e85d0e;
+        }
+
+        /* ===== GALERIE ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* ===== CHATBOT ===== */
+        .chat-btn {
+            position: fixed;
+            bottom: 100px;
+            left: 24px;
+            background: var(--gris-fonce);
+            color: var(--blanc);
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            z-index: 999;
+            transition: transform 0.3s;
+        }
+
+        .chat-btn i {
+            font-size: 2rem;
+            color: var(--orange);
+        }
+
+        .chat-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-box {
+            position: fixed;
+            bottom: 180px;
+            left: 24px;
+            width: 320px;
+            background: var(--blanc);
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: var(--orange);
+            color: var(--blanc);
+            padding: 16px;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .chat-header span {
+            cursor: pointer;
+        }
+
+        .chat-body {
+            padding: 16px;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .bot-message {
+            background: var(--gris-clair);
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .user-option {
+            background: var(--gris-fonce);
+            color: var(--blanc);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .user-option:hover {
+            background: var(--orange);
+        }
+
+        /* ===== WHATSAPP CLIGNOTANT ===== */
+        .wa-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #25D366;
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+            z-index: 999;
+            animation: pulse 2s infinite;
+            text-decoration: none;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--gris-fonce);
+            color: var(--blanc);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--orange);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li i {
+            margin-right: 10px;
+            color: var(--orange);
+        }
+
+        .footer-col a {
+            color: var(--blanc);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-col a:hover {
+            opacity: 1;
+            color: var(--orange);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 24px;
+            margin-top: 16px;
+        }
+
+        .social-links a {
+            color: var(--blanc);
+            font-size: 1.8rem;
+        }
+
+        .social-links a:hover {
+            color: var(--orange);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1200px) {
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 992px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .expertise-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-buttons { flex-direction: column; }
+            .form-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .top-bar .container { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="container">
+            <span><i class="fas fa-map-marker-alt"></i> Bloc 8 N°15 Bis Youssoufia, Rabat</span>
+            <span class="delivery"><i class="fas fa-truck"></i> LIVRAISON GRATUITE PARTOUT AU MAROC</span>
+            <span><i class="fas fa-phone-alt"></i> 07 52 93 41 07</span>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">MEGA<span>ZOOM</span></div>
+            <div class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#catalogue">Catalogue</a>
+                <a href="#expertise">Expert</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <a href="#rdv" class="nav-btn">📅 Prendre RDV</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Votre Vision, <span>Notre Engagement</span></h1>
+            <p>Opticien diplômé IPIAB à Rabat. Équipements de pointe, conseils personnalisés et large choix de montures.</p>
+            <div class="hero-buttons">
+                <a href="#catalogue" class="btn btn-outline">Voir la Collection</a>
+                <a href="#rdv" class="btn btn-primary">Prendre Rendez-vous</a>
+            </div>
+        </div>
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 100" fill="none">
+                <path d="M0 50L60 55.6C120 61.1 240 72.2 360 72.2C480 72.2 600 61.1 720 50C840 38.9 960 27.8 1080 27.8C1200 27.8 1320 38.9 1380 44.4L1440 50V100H1380C1320 100 1200 100 1080 100C960 100 840 100 720 100C600 100 480 100 360 100C240 100 120 100 60 100H0V50Z" fill="white"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section">
+        <div class="container">
+            <div class="section-title">
+                <span class="subtitle">NOTRE SAVOIR-FAIRE</span>
+                <h2>Services Optiques Complets</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-eye"></i>
+                    <h3>Examen de Vue</h3>
+                    <p>Réfractomètre automatique pour une mesure précise de votre acuité visuelle.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-glasses"></i>
+                    <h3>Contactologie</h3>
+                    <p>Adaptation de lentilles souples, rigides et progressives.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-magic"></i>
+                    <h3>Visagisme</h3>
+                    <p>Conseil personnalisé pour trouver la monture idéale à votre morphologie.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Montage & Réparation</h3>
+                    <p>Atelier technique pour l'ajustage et la réparation de vos montures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BANDE ROULANTE CATALOGUE -->
+    <section id="catalogue" class="slider-section">
+        <div class="section-title">
+            <span class="subtitle">COLLECTION 2026</span>
+            <h2>Modèles Clario</h2>
+        </div>
+        <div class="slider-container">
+            <div class="slider-track">
+                <!-- Images 1 à 7 -->
+                <div class="slide"><img src="clario-1.png.png" alt="Clario 1"></div>
+                <div class="slide"><img src="clario-2.png.png" alt="Clario 2"></div>
+                <div class="slide"><img src="clario-3.png.png" alt="Clario 3"></div>
+                <div class="slide"><img src="clario-4.png.png" alt="Clario 4"></div>
+                <div class="slide"><img src="clario-5.png.png" alt="Clario 5"></div>
+                <div class="slide"><img src="clario-6.png.png" alt="Clario 6"></div>
+                <div class="slide"><img src="clario-7.png.png" alt="Clario 7"></div>
+                <!-- Duplication -->
+                <div class="slide"><img src="clario-1.png.png" alt="Clario 1"></div>
+                <div class="slide"><img src="clario-2.png.png" alt="Clario 2"></div>
+                <div class="slide"><img src="clario-3.png.png" alt="Clario 3"></div>
+                <div class="slide"><img src="clario-4.png.png" alt="Clario 4"></div>
+                <div class="slide"><img src="clario-5.png.png" alt="Clario 5"></div>
+                <div class="slide"><img src="clario-6.png.png" alt="Clario 6"></div>
+                <div class="slide"><img src="clario-7.png.png" alt="Clario 7"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERTISE AVEC CLARIO-21 À CÔTÉ DE HAMZA -->
+    <section id="expertise" class="section">
+        <div class="container">
+            <div class="expertise-grid">
+                <div class="expertise-image"></div>
+                <div class="expertise-content">
+                    <span class="subtitle">VOTRE OPTICIEN</span>
+                    <h2>M. Hamza Bahassi</h2>
+                    <span class="badge">Opticien Diplômé IPIAB (2021)</span>
+                    <p>Passionné par l'optométrie et la santé visuelle, M. Bahassi met son expertise au service de vos yeux. Ancien de l'IPIAB, il travaille en collaboration avec des ophtalmologues pour un suivi médical rigoureux. Notre cabinet est équipé d'un réfractomètre automatique et d'un frontofocomètre numérique pour des diagnostics d'une précision absolue.</p>
+                    
+                    <!-- CLARIO-21 DIRECTEMENT À CÔTÉ DE HAMZA -->
+                    <div class="expertise-flex">
+                        <div class="expertise-item">
+                            <img src="clario-21.png.jpg" alt="Nouveau modèle Clario">
+                            <span>Nouvelle Collection 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULAIRE DE RDV -->
+    <section id="rdv" class="section rdv-section">
+        <div class="container">
+            <div class="rdv-card">
+                <div class="section-title">
+                    <span class="subtitle" style="color: var(--orange);">PRENEZ RENDEZ-VOUS</span>
+                    <h2 style="color: var(--gris-fonce);">Consultation Optique</h2>
+                </div>
+                <form id="rdvForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Nom</label>
+                            <input type="text" id="nom" placeholder="Votre nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Prénom</label>
+                            <input type="text" id="prenom" placeholder="Votre prénom" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Téléphone</label>
+                            <input type="tel" id="tel" placeholder="06 XX XX XX XX" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Date souhaitée</label>
+                            <input type="date" id="date" required>
+                        </div>
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label>Motif</label>
+                            <select id="motif" required>
+                                <option value="">Sélectionnez</option>
+                                <option value="Examen de la vue complet">Examen de la vue complet</option>
+                                <option value="Adaptation lentilles">Adaptation lentilles</option>
+                                <option value="Choix de montures">Choix de montures</option>
+                                <option value="Réparation / Ajustage">Réparation / Ajustage</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label>Message (optionnel)</label>
+                            <textarea id="message" rows="3" placeholder="Précisez votre demande..."></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">Confirmer la demande</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIE BOUTIQUE -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <span class="subtitle">NOTRE ESPACE</span>
+                <h2>Votre Boutique à Youssoufia</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="clario-8.png.png" alt="Vitrine"></div>
+                <div class="gallery-item"><img src="clario-9.png.jpeg" alt="Intérieur"></div>
+                <div class="gallery-item"><img src="clario-10.png.jpeg" alt="Rayon"></div>
+                <div class="gallery-item"><img src="clario-11.png.jpeg" alt="Présentoir"></div>
+                <div class="gallery-item"><img src="clario-12.png.jpeg" alt="Ambiance"></div>
+                <div class="gallery-item"><img src="clario-15.png.jpeg" alt="Montures"></div>
+                <div class="gallery-item"><img src="clario-16.png.jpeg" alt="Solaire"></div>
+                <div class="gallery-item"><img src="clario-17.png.jpeg" alt="Optique"></div>
+                <div class="gallery-item"><img src="clario-18.png.jpeg" alt="Accessoires"></div>
+                <div class="gallery-item"><img src="clario-19.png.jpeg" alt="Accueil"></div>
+                <div class="gallery-item"><img src="clario-13.png.jpeg" alt="Machine"></div>
+                <div class="gallery-item"><img src="clario-14.png.jpeg" alt="Machine"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHATBOT -->
+    <div class="chat-btn" onclick="toggleChat()">
+        <i class="fas fa-comment-medical"></i>
+    </div>
+    <div class="chat-box" id="chatBox">
+        <div class="chat-header">
+            <span>Assistant Vision</span>
+            <span onclick="toggleChat()">✕</span>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="bot-message">Bonjour ! Comment puis-je vous aider ?</div>
+            <div class="user-option" onclick="botReply('sante')">💡 Santé des yeux</div>
+            <div class="user-option" onclick="botReply('nettoyage')">🧼 Nettoyage lunettes</div>
+            <div class="user-option" onclick="botReply('ecran')">🖥️ Fatigue écrans</div>
+        </div>
+    </div>
+
+    <!-- WHATSAPP FLOTTANT -->
+    <a href="https://wa.me/212752934107?text=Bonjour%20Mega%20Zoom%20Optique%2C%20je%20souhaite%20des%20informations." class="wa-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Mega Zoom Optique</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Bloc 8 N°15 Bis, Youssoufia, Rabat</li>
+                        <li><i class="fas fa-phone"></i> 07 52 93 41 07</li>
+                        <li><i class="fas fa-envelope"></i> bahassih@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Horaires</h4>
+                    <ul>
+                        <li>Lun - Ven : 09h30 - 19h30</li>
+                        <li>Samedi : 10h00 - 18h00</li>
+                        <li>Dimanche : Fermé</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Liens</h4>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#catalogue">Catalogue</a></li>
+                        <li><a href="#expertise">L'expert</a></li>
+                        <li><a href="#rdv">Rendez-vous</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Réseaux</h4>
+                    <div class="social-links">
+                        <a href="https://instagram.com/mega.zoom_off" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://tiktok.com/@mega.zoom_off" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Mega Zoom Optique - Site réalisé pour M. Hamza Bahassi</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // CHATBOT FONCTIONNEL
+        function toggleChat() {
+            const box = document.getElementById('chatBox');
+            if (box.style.display === 'flex') {
+                box.style.display = 'none';
+            } else {
+                box.style.display = 'flex';
+            }
+        }
+
+        function botReply(topic) {
+            const body = document.getElementById('chatBody');
+            let reply = '';
+            
+            if (topic === 'sante') {
+                reply = 'Règle du 20-20-20 : toutes les 20 min, regardez à 20 pieds (6m) pendant 20 secondes.';
+            } else if (topic === 'nettoyage') {
+                reply = 'Eau tiède + savon doux. Séchez avec une microfibre propre. Évitez les vêtements !';
+            } else if (topic === 'ecran') {
+                reply = 'Les verres anti-lumière bleue réduisent la fatigue numérique. Demandez-nous conseil !';
+            }
+            
+            body.innerHTML += `<div class="bot-message" style="background: #e8f5e9;">${reply}</div>`;
+            body.scrollTop = body.scrollHeight;
+        }
+
+        // DATE MINIMALE = AUJOURD'HUI
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').setAttribute('min', today);
+
+        // FORMULAIRE → WHATSAPP (CORRIGÉ)
+        document.getElementById('rdvForm').addEventListener('submit', function(e) {
+            e
